@@ -31,7 +31,7 @@ const recursiveCalc = (exp: string): number => {
       tokens[index++] === ")" || console.log("expression is not correct");
       return value;
     }
-    return parseInt(token);
+    return parseFloat(token);
   }
   return parseExpression();
 };
