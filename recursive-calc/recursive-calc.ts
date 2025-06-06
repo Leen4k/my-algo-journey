@@ -1,4 +1,4 @@
-const recursiveCalc = (exp: string): number => {
+export const recursiveCalc = (exp: string): number => {
   const tokens = exp.replace(/\s/g, "").match(/(\d+|\+|\-|\*|\/|\(|\))/g)!;
   !tokens && console.log("expression is not correct");
 
@@ -31,7 +31,7 @@ const recursiveCalc = (exp: string): number => {
       tokens[index++] === ")" || console.log("expression is not correct");
       return value;
     }
-    return parseFloat(token);
+    return parseFloat(token!);
   }
   return parseExpression();
 };
