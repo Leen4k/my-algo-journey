@@ -6,7 +6,7 @@ export function solveNQueens(n: number): string[][] {
   const board: string[][] = Array.from({ length: n }, () => Array(n).fill("."));
   const cols: Set<number> = new Set();
   const positiveDiag: Set<number> = new Set();
-  const negDiag: Set<number> = new Set();
+  const negativeDiag: Set<number> = new Set();
   const result: string[][] = [];
 
   function backtrack(row: number): void {
@@ -19,7 +19,7 @@ export function solveNQueens(n: number): string[][] {
       if (
         cols.has(col) ||
         positiveDiag.has(row + col) ||
-        negDiag.has(row - col)
+        negativeDiag.has(row - col)
       ) {
         continue;
       }
@@ -27,14 +27,14 @@ export function solveNQueens(n: number): string[][] {
       board[row][col] = "Q";
       cols.add(col);
       positiveDiag.add(row + col);
-      negDiag.add(row - col);
+      negativeDiag.add(row - col);
 
       backtrack(row + 1);
 
       board[row][col] = ".";
       cols.delete(col);
       positiveDiag.delete(row + col);
-      negDiag.delete(row - col);
+      negativeDiag.delete(row - col);
     }
   }
 
