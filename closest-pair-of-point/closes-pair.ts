@@ -15,11 +15,13 @@ function bruteForce(points: Point[]): number {
   let minDistance = Infinity;
   for (let i = 0; i < points.length; i++) {
     for (let j = i + 1; j < points.length; j++) {
+      const p1 = points[i]!;
+      const p2 = points[j]!;
       const distance = calculateDistance(points[i]!, points[j]!);
+      console.log(`distance between (${p1.x},${p1.y}) & (${p2.x},${p2.y}) = ${distance.toFixed(2)}`);
       minDistance = Math.min(minDistance, distance);
     }
   }
-
   return minDistance;
 }
 
@@ -77,3 +79,15 @@ export function closestPair(points: Point[]): number {
   const sortedByX = [...points].sort((a, b) => a.x - b.x);
   return divideAndConquer(sortedByX);
 }
+
+const testPoints: Point[] = [
+  { x: 2, y: 3 },
+  { x: 12, y: 30 },
+  { x: 40, y: 50 },
+  { x: 5, y: 1 },
+  { x: 12, y: 10 },
+  { x: 3, y: 4 },
+];
+
+const result = closestPair(testPoints);
+console.log(result);
